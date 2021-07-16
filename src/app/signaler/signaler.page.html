@@ -1,0 +1,132 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tabs/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Signaler un objet</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form #form="ngForm" (ngSubmit)="signaler(form)">
+    <ion-list >
+
+      <h3>
+        Informations sur l'objet
+      </h3>
+
+      <ion-note class="ion-margin-vertical">
+        Les champs avec <ion-text color="danger">*</ion-text> sont obligatoires
+      </ion-note>
+
+      <ion-item lines="inset">
+        <ion-label position="floating">C'est quel objet ? <ion-text color="danger">*</ion-text></ion-label>
+        <ion-select [disabled]="isLoading" required name="type" ngModel>
+          <ion-select-option value="steakers">Autocollant LostButFind</ion-select-option>
+          <ion-select-option value="cni">Carte d'itentité</ion-select-option>
+          <ion-select-option value="passport">Passport</ion-select-option>
+          <ion-select-option value="other">Autre</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <!-- Cas d'une CNI -->
+        <ion-item *ngIf="form.value.type === 'cni'" lines="inset">
+          <ion-label position="floating">Noms sur CNI<ion-text color="danger">*</ion-text></ion-label>
+          <ion-input [disabled]="isLoading" name="nomsCni" required ngModel inputmode="text" autocomplete="true" type="text"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="form.value.type === 'cni'" lines="inset">
+          <ion-label position="floating">Date Naissance sur CNI</ion-label>
+          <ion-input [disabled]="isLoading" name="naissanceCni" ngModel required inputmode="date" autocomplete="true" type="date"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="form.value.type === 'cni'" lines="inset">
+          <ion-label position="floating">Noms Père sur CNI<ion-text color="danger">*</ion-text></ion-label>
+          <ion-input [disabled]="isLoading" name="nomsPereCni" ngModel required inputmode="text" autocomplete="true" type="text"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="form.value.type === 'cni'" lines="inset">
+          <ion-label position="floating">Noms Mère sur CNI<ion-text color="danger">*</ion-text></ion-label>
+          <ion-input [disabled]="isLoading" name="nomsMereCni" ngModel inputmode="text" required autocomplete="true" type="text"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="form.value.type === 'cni'" lines="inset">
+          <ion-label position="floating">Sexe sur la CNI</ion-label>
+          <ion-select [disabled]="isLoading" name="sexeCni" ngModel>
+            <ion-select-option value="m">Masculin</ion-select-option>
+            <ion-select-option value="f">Feminin</ion-select-option>
+          </ion-select>
+        </ion-item>
+      <!-- Fin cas CNI -->
+
+      <!-- Cas d'un passport -->
+        <ion-item *ngIf="form.value.type === 'passport'" lines="inset">
+          <ion-label position="floating">Noms sur passport<ion-text color="danger">*</ion-text></ion-label>
+          <ion-input [disabled]="isLoading" name="nomsPassport" required ngModel inputmode="text" autocomplete="true" type="text"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="form.value.type === 'passport'" lines="inset">
+          <ion-label position="floating">Date Naissance sur la passport<ion-text color="danger">*</ion-text></ion-label>
+          <ion-input [disabled]="isLoading" name="naissancePassport" required ngModel inputmode="date" autocomplete="true" type="date"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="form.value.type === 'passport'" lines="inset">
+          <ion-label position="floating">Date délivrance sur la passport<ion-text color="danger">*</ion-text></ion-label>
+          <ion-input [disabled]="isLoading" name="dateDelivrancePassport" required ngModel inputmode="date" autocomplete="true" type="date"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="form.value.type === 'passport'" lines="inset">
+          <ion-label position="floating">Nationalité sur la passport</ion-label>
+          <ion-input [disabled]="isLoading" name="nationalitePassport" ngModel inputmode="text" required autocomplete="true" type="text"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="form.value.type === 'passport'" lines="inset">
+          <ion-label position="floating">Sexe sur la passport</ion-label>
+          <ion-select [disabled]="isLoading" name="sexePassport" ngModel>
+            <ion-select-option value="m">Masculin</ion-select-option>
+            <ion-select-option value="f">Feminin</ion-select-option>
+          </ion-select>
+        </ion-item>
+      <!-- Fin cas passport -->
+
+      <!-- Cas d'un objet steakers -->
+      <ion-item *ngIf="form.value.type === 'steakers'" lines="inset">
+        <ion-label position="floating">Identifiant de l'objet <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input [disabled]="isLoading" required name="idSteakers" ngModel inputmode="text" autocomplete="true" type="text"></ion-input>
+      </ion-item>
+      <!-- Fin cas steakers -->
+
+      <!-- Cas d'un autre type objet -->
+        <ion-item *ngIf="form.value.type === 'other'" lines="inset">
+          <ion-label position="floating">De quel type d'objet il s'agit ? <ion-text color="danger">*</ion-text></ion-label>
+          <ion-input [disabled]="isLoading" name="other" required ngModel inputmode="text" autocomplete="true" type="text"></ion-input>
+        </ion-item>
+
+        <ion-item *ngIf="form.value.type === 'other'" lines="inset">
+          <ion-label position="floating">Informations sur l'identification de l'objet <ion-text color="danger">*</ion-text></ion-label>
+          <ion-textarea [disabled]="isLoading" required name="information" ngModel required inputmode="text" type="text"></ion-textarea>
+        </ion-item>
+      <!-- Fin cas other -->
+
+      <ion-item lines="inset">
+        <ion-label position="floating">Informations precis sur le lieu  <ion-text color="danger">*</ion-text></ion-label>
+        <ion-textarea [disabled]="isLoading" name="information" ngModel required inputmode="text" type="text"></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-label color="dark" position="stacked">Localisation du lieu</ion-label>
+        <p *ngIf="coordinates">
+          <span>{{coordinates.coords.latitude}}° N</span><br> <br>
+          <span>{{coordinates.coords.longitude}}° E</span>
+        </p>
+        <ion-spinner class="ion-margin" name="crescent" *ngIf="!coordinates"></ion-spinner>
+      </ion-item>
+
+
+    </ion-list>
+    <div class="ion-padding ion-margin-top">
+      <ion-button mode="ios" expand="block" shape="round" type="submit" [disabled]="form.invalid || isLoading || !coordinates" class="ion-no-margin">Signaler</ion-button>
+    </div>
+    <div class="ion-padding-horizontal">
+      <ion-note>
+        Entrer toutes informations d'identification de l'objet,
+        imei pour un téléphone, ou le numero d'identification si un autocollant LostButFind est
+        collé sur l'objet que vous avez trouvé.
+        Vos informations personnelles ne sont pas envoyés au propriétaire de l'objet.
+      </ion-note>
+    </div>
+
+  </form>
+</ion-content>

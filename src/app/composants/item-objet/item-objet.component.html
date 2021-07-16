@@ -1,0 +1,12 @@
+<ion-card button="true" *ngIf="skin === 'card' && objet" (click)="openPageApercu()" style="margin: 4px;">
+  <img [srcset]="objet.type === 'steakers' ? '../assets/img/steakers.png' : (objet.type === 'cni' ? '../assets/img/cni.png' : (objet.type === 'passport' ? '../assets/img/passport.png' : (objet.type === 'phone' ? '../assets/img/phone.png' : '../assets/img/other.png')))"/>
+  <ion-card-header>
+    <ion-card-subtitle [style.textTransform]="'capitalize'">{{ objet.type !== 'other' ? objet.type : (objet.autreType.length>16)? (objet.autreType | slice:0:16)+'..':(objet.autreType) }}</ion-card-subtitle>
+  </ion-card-header>
+  <ion-card-content [style.textTransform]="'capitalize'">
+    <span> {{ (objet.identifications.length>16)? (objet.identifications | slice:0:16)+'..':(objet.identifications)}} </span>
+    <div class="ion-text-end">
+      <ion-text color="primary"> <small> {{objet.date | date:"hh:mm dd.MM.yy" }} </small> </ion-text>
+    </div>
+  </ion-card-content>
+</ion-card>

@@ -1,0 +1,14 @@
+.logo {
+  max-width: 170px;
+  max-height: 170px;
+}
+
+.swiper-slide {
+  display: block;
+}
+
+.swiper-slide img {
+  max-height: 50%;
+  max-width: 100%;
+  pointer-events: none;
+}

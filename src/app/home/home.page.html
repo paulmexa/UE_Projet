@@ -1,0 +1,60 @@
+<ion-header translucent="true">
+
+  <div>
+    &nbsp;
+  </div>
+  <ion-toolbar class="ion-padding-top">
+    <ion-title slot="start">
+      <ion-img src="../../assets/img/logo.png"></ion-img>
+    </ion-title>
+  </ion-toolbar>
+
+  <ion-toolbar *ngIf="user">
+    <ion-title color="dark" slot="start">
+      Bienvenue, {{ user.prenom.split(' ')[0] }}
+    </ion-title>
+    <ion-avatar routerLink="../../setting" slot="end">
+      <ion-img style="width: 50px; height: 50px;" [src]="user.photo ? user.photo : '../../assets/img/user.png'"></ion-img>
+    </ion-avatar>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content class="ion-padding-horizontal">
+
+  <div class="ion-padding-top ion-padding-bottom">
+    <ion-text>
+      Vous pouvez choisir parmis les differentes actions proposés ci dessous.
+   </ion-text>
+  </div>
+
+
+  <ion-card [routerLink]="['../../save', 'findObjet']">
+    <img src="../../assets/img/find.png" />
+    <ion-card-header>
+      <ion-card-title>Signaler un objet trouvé</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      Enregistrer sur la plateforme un objet que vous avez trouvé.
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card routerLink="../../mes-objets">
+    <img src="../../assets/img/save.png" />
+    <ion-card-header>
+      <ion-card-title>Mes objets</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      Vous pouvez lié vos objets a votre identifiant sur la plateforme ou déclaré un objet perdu pour être notifier lorsque quelqu'un l'aura retrouvé.
+    </ion-card-content>
+  </ion-card>
+
+  <div class="ion-padding-top ion-padding-bottom">
+    <ion-text>
+      Si vous avez un objet perdu, vous pouvez l'enregistré parmis vos objets.
+    </ion-text>
+  </div>
+
+</ion-content>

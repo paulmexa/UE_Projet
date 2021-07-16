@@ -1,0 +1,40 @@
+<ion-header translucent="true">
+  <div>
+    &nbsp;
+  </div>
+  <ion-toolbar class="ion-padding-top">
+    <ion-title slot="start">
+      Vos notifications
+    </ion-title>
+  </ion-toolbar>
+
+  <ion-toolbar>
+    <ion-title color="dark" slot="start">
+      {{ nombreNonLue }} nouvelle{{ nombreNonLue > 1 ? 's':'' }} notification{{ nombreNonLue > 1 ? 's':'' }}
+    </ion-title>
+    <ion-avatar slot="end">
+      <ion-img style="width: 50px; height: 50px;" [src]="nombreNonLue > 0 ? '../../assets/img/notification-new.png' : '../../assets/img/notification-tout-vu.png'"></ion-img>
+    </ion-avatar>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content class="ion-padding-horizontal">
+
+  <div class="ion-padding-top ion-padding-bottom">
+    <ion-text>
+      Voici la liste de vos notifications
+   </ion-text>
+  </div>
+
+  <ion-card color="primary" [routerLink]="['../../tabs/search', '125412']">
+    <ion-card-header>
+      <ion-card-title>Objet signalé</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      Il est possible que votre objet signalé perdu ait été retrouvé, clique ici pour afficher.
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

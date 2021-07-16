@@ -1,0 +1,28 @@
+<ion-header translucent="true">
+  <div>
+    &nbsp;
+  </div>
+  <ion-toolbar class="ion-padding-top">
+    <ion-title slot="start">
+      Rechercher un objet
+    </ion-title>
+  </ion-toolbar>
+
+  <ion-toolbar class="ion-padding-horizontal" style="padding-top: 5px;">
+    <ion-searchbar (ionChange)="search()" [(ngModel)]="recupTerme" color="light" placeholder="Rechercher structure..."></ion-searchbar>
+  </ion-toolbar>
+  <ion-progress-bar color="secondary" *ngIf="isLoading && resultat.length === 0" type="indeterminate"></ion-progress-bar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-text-center ion-padding-vertical" *ngIf="!isLoading && resultat.length === 0">
+    <img width="70%" src="../assets/img/zone-search.png">
+    <div class="ion-padding-horizontal ion-padding-vertical">
+      Vous pouvez rechercher un objet sur cette page, à partir d'indices liés à cet objet.
+    </div>
+  </div>
+
+  <div class="ion-text-center ion-padding-vertical" *ngIf="isLoading">
+    <img width="70%" src="../assets/img/search.gif">
+  </div>
+</ion-content>

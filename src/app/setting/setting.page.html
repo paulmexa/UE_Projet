@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tabs/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Réglages</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div *ngIf="user" class="ion-text-center ion-padding">
+    <ion-avatar class="middle-img" slot="center" style="display: inline">
+      <img [srcset]="user.photo === '' ? '../assets/img/user.png' : user.photo">
+    </ion-avatar>
+    <h3 [style.textTransform]="'capitalize'">
+      {{user.nom}} {{user.prenom}}
+    </h3>
+    <small>
+
+    </small>
+  </div>
+
+  <ion-item (click)="about()" lines="inset" detail="false" button routerDirection="forward">
+    <ion-icon name="information-circle-sharp" slot="start"></ion-icon>
+    <ion-label>
+      <h2>A propos</h2>
+      <p>
+        Informations sur l'application.
+      </p>
+    </ion-label>
+  </ion-item>
+
+  <ion-item lines="inset" detail="false" button (click)="confirmDeconnexion()">
+    <ion-icon name="power" slot="start"></ion-icon>
+    <ion-label>
+      <h2>Se déconnecter</h2>
+      <p>
+        Vous serez déconnecter.
+      </p>
+    </ion-label>
+  </ion-item>
+
+  <div class="ion-margin about ion-text-center">
+    <b style="display:block;">LostButFind 1.0</b>
+    <small>
+      Projet de fin d'étude - UY1
+    </small>
+    <small style="display:block">© 2021</small>
+
+  </div>
+</ion-content>

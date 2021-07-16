@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tabs/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Vos objets</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding-horizontal">
+
+  <div class="ion-padding-top ion-padding-bottom">
+    <ion-text>
+      Vous pouvez ajouté ou choisir un objet dans cette liste et même le declaré perdu.
+    </ion-text>
+  </div>
+
+  <ion-grid class="ion-no-padding">
+    <ion-row>
+      <ion-col size-lg="4" size-md="6" size-sm="6" size="6">
+        <ion-card color="secondary" [routerLink]="['/save', 'saveObjet']" button="true" class="ion-no-padding" style="margin: 4px;">
+          <img style="max-height: 100px" srcset="../assets/img/add-objet.png"/>
+          <ion-card-header>
+            <ion-card-subtitle [style.textTransform]="'capitalize'">Nouveau objet</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+              Cliquer ici pour en ajouté sur l'app
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size-lg="4" size-md="6" size-sm="6" size="6" *ngFor="let objet of listeObjet;">
+        <app-item-objet idObjet="{{objet.id}}" skin="card"></app-item-objet>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
